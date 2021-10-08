@@ -1,0 +1,36 @@
+.authPage {
+  width: 400px;
+  height: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+#normal_login {
+  margin: 0 auto;
+}
+
+.login-form {
+  max-width: 300px;
+  margin: 0 auto;
+}
+.login-form-forgot {
+  float: right;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+.login-form-button {
+  width: 100%;
+  background-color: black;
+}
+
+.authHeader {
+  font-family: "Roboto";
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 50px;
+  color: #525252;
+}
