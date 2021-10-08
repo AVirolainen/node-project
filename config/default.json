@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "jwtSecret": "lorem ipsum",
+    "mongoURL": "mongodb+srv://rudeN:yjkljh4545@cluster0.s9ixc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
