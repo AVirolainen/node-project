@@ -21,11 +21,14 @@ function AuthPage() {
     }
 
     useEffect(()=>{
-        notification["error"]({
-            message: 'Error',
-            description: error,
-        });
-    }, [error])
+        if(error){
+            notification["error"]({
+                message: 'Error',
+                description: error,
+            });
+            clearError()
+        }
+    }, [error, clearError])
 
     const onFinish = (values) => {
         setForm({
