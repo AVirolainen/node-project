@@ -1,14 +1,42 @@
-
-import 'antd/dist/antd.css';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import 'antd/dist/antd.css'
+import {useState, useEffect} from "react"
+import { Form, Input, Button, Checkbox, notification, Space } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import './AuthPage.css'  
 
+import {useHttp} from "../../hooks/http.hook"
+
 function AuthPage() {
+    const {loading, error, request, clearError} = useHttp()
+
+    const [form, setForm] = useState({
+        email: "", password: ""
+    })
+
+    const registerHandler = async () =>{
+        try{
+            const data = await request('/api/auth/register', 'POST', {...form})
+            console.log('Data', data)
+        } catch(e){}
+    }
+
+    useEffect(()=>{
+        notification["error"]({
+            message: 'Error',
+            description: error,
+        });
+    }, [error])
 
     const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+        setForm({
+            email: values.username,
+            password: values.password
+        })
+        registerHandler()
     };
+
+
+
 
     return (
         <div className="authPage">
@@ -19,7 +47,8 @@ function AuthPage() {
                     initialValues={{
                         remember: true,
                     }}
-                    onFinish={onFinish}>
+                    onFinish={onFinish}
+                    >
 
                     <Form.Item
                         name="username"
