@@ -1,12 +1,16 @@
 import 'antd/dist/antd.css'
-import {useState, useEffect} from "react"
+import {useState, useEffect, useContext} from "react"
 import { Form, Input, Button, Checkbox, notification, Space } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import './AuthPage.css'  
+import { AuthContext } from '../../context/AuthContext'
 
 import {useHttp} from "../../hooks/http.hook"
 
-function AuthPage() {
+const AuthPage = ()=>{
+    const auth = useContext(AuthContext) 
+
+
     const {loading, error, request, clearError} = useHttp()
 
     const [form, setForm] = useState({
@@ -17,6 +21,14 @@ function AuthPage() {
         try{
             const data = await request('/api/auth/register', 'POST', {...form})
             console.log('Data', data)
+        } catch(e){}
+    }
+
+    const loginHandler = async () =>{
+        try{
+            const data = await request('/api/auth/register', 'POST', {...form})
+            
+            auth.login(data.token, data.userId)
         } catch(e){}
     }
 
@@ -50,7 +62,6 @@ function AuthPage() {
                     initialValues={{
                         remember: true,
                     }}
-                    onFinish={onFinish}
                     >
 
                     <Form.Item
@@ -92,14 +103,16 @@ function AuthPage() {
                         <Button type="primary" 
                                 htmlType="submit" 
                                 className="login-form-button" 
-                                style={{ background: "#525252", borderColor: "#525252" }}>
+                                style={{ background: "#525252", borderColor: "#525252" }}
+                                onClick={onFinish}>
                             Log in
                         </Button>
 
                         <Button type="primary" 
                                 htmlType="submit" 
                                 className="login-form-button" 
-                                style={{ background: "#525252", borderColor: "#525252", marginTop: "10px"}}>
+                                style={{ background: "#525252", borderColor: "#525252", marginTop: "10px"}}
+                                onClick={loginHandler}>
                             Register
                         </Button>
                     </Form.Item>
