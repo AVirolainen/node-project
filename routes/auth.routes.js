@@ -25,11 +25,11 @@ router.post(
             
             })
         }
+
         const {email, password} = req.body
-        console.log(email, password)
         const candidate = await User.findOne({email})
         if(candidate){
-            res.status(400).json({message: "There are already user with this email"})
+            return res.status(400).json({message: "There are already user with this email"})
         }
 
         const hashedPassword = await bcrypt.hash(password, 12)
@@ -38,6 +38,7 @@ router.post(
         await user.save()
 
         res.status(201).json({message: "User has been created"})
+        
     } catch(e) {
         res.status(500).json({message: "Something is wrong"})
     }
@@ -72,7 +73,7 @@ router.post(
             return res.status(400).json("User has not been found")
         }
 
-        const isMatch = bcrypt.compare(password, user.password)
+        const isMatch = await bcrypt.compare(password, user.password)
 
         if(!isMatch){
             return res.status(400).json({message:"Password is not correct, please try again"})
@@ -85,15 +86,10 @@ router.post(
         )
 
         res.json({token, userId: user.id})
-        
-        res.status(201).json({message: "User has been created"})
+
     } catch(e){
         res.status(500).json({message: "Something is wrong"})
     }
 })
-
-
-
-
 
 module.exports = router

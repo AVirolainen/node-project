@@ -17,18 +17,16 @@ const AuthPage = ()=>{
         email: "", password: ""
     })
 
-    console.log(form)
-
     const registerHandler = async () =>{
         try{
-            const data = await request('/api/auth/register', 'POST', {...form})
+            const data = await request('/api/auth/register/', 'POST', {...form})
             console.log('Data', data)
         } catch(e){}
     }
 
     const loginHandler = async () =>{
         try{
-            const data = await request('api/auth/login', 'POST', {...form})
+            const data = await request('/api/auth/login/', 'POST', {...form})
             auth.login(data.token, data.userId)
         } catch(e){}
     }
@@ -42,14 +40,6 @@ const AuthPage = ()=>{
             clearError()
         }
     }, [error, clearError])
-
-    // const onFinish = (values) => {
-    //     setForm({
-    //         email: values.username,
-    //         password: values.password
-    //     })
-    //     registerHandler()
-    // };
 
     const onChangeEmail = (e) => {
         setForm(Object.assign(form, {email: e.target.value}))

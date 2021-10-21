@@ -9,6 +9,7 @@ const MainPage = ()=>{
         event.preventDefault()
         auth.logout()
     }
+    
     return(
         <div>
             <li>

@@ -16,6 +16,11 @@ async function start() {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
+
+        app.listen(PORT, () => {
+            console.log(`app has been started on port ${PORT}`)
+        })
+
     }
     catch (e) {
         console.log('Server Error', e.message)
@@ -24,7 +29,3 @@ async function start() {
 }
 
 start()
-
-app.listen(5000, () => {
-    console.log(`app has been started on port ${PORT}`)
-})
