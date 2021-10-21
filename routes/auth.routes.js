@@ -26,6 +26,7 @@ router.post(
             })
         }
         const {email, password} = req.body
+        console.log(email, password)
         const candidate = await User.findOne({email})
         if(candidate){
             res.status(400).json({message: "There are already user with this email"})
@@ -73,7 +74,7 @@ router.post(
 
         const isMatch = bcrypt.compare(password, user.password)
 
-        if(!iSMatch){
+        if(!isMatch){
             return res.status(400).json({message:"Password is not correct, please try again"})
         }
 

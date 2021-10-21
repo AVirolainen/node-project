@@ -17,6 +17,8 @@ const AuthPage = ()=>{
         email: "", password: ""
     })
 
+    console.log(form)
+
     const registerHandler = async () =>{
         try{
             const data = await request('/api/auth/register', 'POST', {...form})
@@ -26,8 +28,7 @@ const AuthPage = ()=>{
 
     const loginHandler = async () =>{
         try{
-            const data = await request('/api/auth/register', 'POST', {...form})
-            
+            const data = await request('api/auth/login', 'POST', {...form})
             auth.login(data.token, data.userId)
         } catch(e){}
     }
@@ -42,16 +43,21 @@ const AuthPage = ()=>{
         }
     }, [error, clearError])
 
-    const onFinish = (values) => {
-        setForm({
-            email: values.username,
-            password: values.password
-        })
-        registerHandler()
-    };
+    // const onFinish = (values) => {
+    //     setForm({
+    //         email: values.username,
+    //         password: values.password
+    //     })
+    //     registerHandler()
+    // };
 
+    const onChangeEmail = (e) => {
+        setForm(Object.assign(form, {email: e.target.value}))
+    }
 
-
+    const onChangePassword = (e) => {
+        setForm(Object.assign(form, {password: e.target.value}))
+    }
 
     return (
         <div className="authPage">
@@ -74,7 +80,8 @@ const AuthPage = ()=>{
                         ]}>
                         <Input 
                             prefix={<UserOutlined className="site-form-item-icon" />} 
-                            placeholder="Username" />
+                            placeholder="Username" 
+                            onChange={onChangeEmail}/>
                     </Form.Item>
 
                     <Form.Item
@@ -89,6 +96,7 @@ const AuthPage = ()=>{
                             prefix={<LockOutlined className="site-form-item-icon" />}
                             type="password"
                             placeholder="Password"
+                            onChange={onChangePassword}
                         />
                     </Form.Item>
 
@@ -104,7 +112,7 @@ const AuthPage = ()=>{
                                 htmlType="submit" 
                                 className="login-form-button" 
                                 style={{ background: "#525252", borderColor: "#525252" }}
-                                onClick={onFinish}>
+                                onClick={loginHandler}>
                             Log in
                         </Button>
 
@@ -112,7 +120,7 @@ const AuthPage = ()=>{
                                 htmlType="submit" 
                                 className="login-form-button" 
                                 style={{ background: "#525252", borderColor: "#525252", marginTop: "10px"}}
-                                onClick={loginHandler}>
+                                onClick={registerHandler}>
                             Register
                         </Button>
                     </Form.Item>
