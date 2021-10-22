@@ -3,12 +3,12 @@ import {Switch, Route, Redirect} from "react-router-dom"
 import MainPage from "./components/MainPage/MainPage"
 import AuthPage from "./components/AuthPage/AuthPage"
 
-export const useRoutes = isAuthenticated =>{
+export const useRoutes = (isAuthenticated) =>{
     if(isAuthenticated){
         return(
             <Switch>
                 <Route path="/home" exact>
-                    <MainPage />
+                    <MainPage/>
                 </Route>
                 <Redirect to="/home" />
             </Switch>
