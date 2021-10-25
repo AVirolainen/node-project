@@ -1,5 +1,46 @@
 .tableBlock {
   width: 40%;
-  height: 400px;
+  height: 870px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding-top: 10px;
+}
+
+.tableImage {
+  width: 20px;
+}
+
+.tableRow {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  height: 40px;
+}
+
+.row:hover {
+  background-color: #bababa;
+}
+
+.tablePosition {
+  width: 50px;
+  text-align: center;
+}
+
+.tableTeamName {
+  margin-left: 10px;
+  width: 340px;
+}
+
+.tableTeamGames {
+  width: 25px;
+}
+
+.tableTeamPoints {
+  width: 40px;
+  text-align: center;
+}
+
+.header {
+  border-bottom: 1px solid #707070;
+  margin-bottom: 10px;
 }

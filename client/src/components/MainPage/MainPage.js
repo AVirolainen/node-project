@@ -11,7 +11,6 @@ const MainPage = (props)=>{
     const auth = useContext(AuthContext)
     const [tableInfo, setTableInfo] = useState(null)
     const {request} = useHttp()
-    console.log(tableInfo)
 
     useEffect(()=>{
         const getTable = async ()=>{
@@ -32,7 +31,7 @@ const MainPage = (props)=>{
             <HeaderBlock/>
             <div className="mainWrapper">
                 <InfoBlock />
-                <TableBlock />
+                <TableBlock tableInfo={tableInfo}/>
             </div>
             <li><a href="/" onClick={logoutHandler}>Выйти</a></li>
         </div>
