@@ -1,6 +1,6 @@
 .tableBlock {
   width: 40%;
-  height: 870px;
+  height: 850px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   padding-top: 10px;
@@ -28,7 +28,7 @@
 
 .tableTeamName {
   margin-left: 10px;
-  width: 340px;
+  width: 78%;
 }
 
 .tableTeamGames {
@@ -42,5 +42,5 @@
 
 .header {
   border-bottom: 1px solid #707070;
-  margin-bottom: 10px;
+  
 }

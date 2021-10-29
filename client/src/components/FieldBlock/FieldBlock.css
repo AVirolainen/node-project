@@ -1,0 +1,7 @@
+.fieldBlock{
+    width: 100%;
+    height: 450px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 20px;
+  }
