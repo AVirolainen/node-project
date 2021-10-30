@@ -3,3 +3,25 @@
   height: 850px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
+
+.footballField{
+  width: 57%;
+  height: 100%;
+  background-size: cover;
+  background-image: url(./assets/football_field.png);
+}
+
+.positionsWrapper{
+  display: flex;
+  padding-top: 120px;
+  justify-content: space-around;
+}
+
+.fieldPostion{
+  width: 90px;
+  height: 90px;
+  border-radius: 45px;
+  background: white
+
+}
+
