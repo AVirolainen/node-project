@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 const TableBlock = (props)=>{
     const [table, setTable] = useState([])
-    console.log(table)
 
     useEffect(()=>{
       if(props.tableInfo){
