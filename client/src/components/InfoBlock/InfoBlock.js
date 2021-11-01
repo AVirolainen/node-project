@@ -1,7 +1,7 @@
 import "./InfoBlock.css"
 import {useState, useEffect, useContext} from "react"
 import {useHttp} from "../../hooks/http.hook"
-
+import teamsInfo from "./data/teamsInfo"
 
 const InfoBlock = ()=>{
 
@@ -9,15 +9,18 @@ const InfoBlock = ()=>{
 
     useEffect(()=>{
 
-        const getPlayers = async () =>{
+        const getPlayers = async (name, id, logo) =>{
             try{  
-                console.log("tyt")
-                const data = await request('/api/players')
+                console.log(name, id, logo)
+                const data = await request('/api/players/', 'GET', {name: name, id: id, logo: logo})
                 console.log('Data', data)
             } catch(e){}
         }
 
-        getPlayers()
+        teamsInfo.forEach((item)=>{
+            getPlayers(item.teamName, item.teamId, item.teamLogoId)
+        })
+        
 
     }, [])
 

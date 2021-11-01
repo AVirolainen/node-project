@@ -100,4 +100,3 @@ module.exports = [
         "teamLogoId": "446"
     },
 ]
-

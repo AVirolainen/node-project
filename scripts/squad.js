@@ -2,11 +2,12 @@ const axios = require('axios')
 const cheerio = require('cheerio')
 let teamsInfo = require("./teamsInfo")
 
+const players = []
 
 teamsInfo.forEach((item)=>{
     let url = `https://www.flashscore.com.ua/team/${item.teamName}/${item.teamId}/squad/`
 
-    axios(url)
+    const data = axios(url)
         .then(responce => {
             const html = responce.data
             const $ = cheerio.load(html)
@@ -46,8 +47,12 @@ teamsInfo.forEach((item)=>{
 
             })
             info["logo"] = `https://s.ill.in.ua/i/football/team/logo/0x160/${item.teamLogoId}.png`
-            console.log(info)
+            return info
         }).catch(err => console.log(err))
+
+    data.then(value => players.push(value))
 })
+
+
 
 
