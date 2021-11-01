@@ -1,5 +1,6 @@
 import "./TableBlock.css"
 import { useEffect, useState } from "react";
+import Loader from "../Loader/Loader"
   
 
 const TableBlock = (props)=>{
@@ -14,7 +15,13 @@ const TableBlock = (props)=>{
       }
     }, [props.tableInfo])
 
-
+    if(table.length == 0){
+      return(
+        <div className="tableBlock">
+          <Loader />
+        </div>
+      )
+    }
 
     return(
         <div className="tableBlock">
