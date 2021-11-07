@@ -11,7 +11,7 @@ const PlayerCascader = (props)=>{
       }
     })
 
-    props.addPlayer(props.id, logo)
+    props.addPlayer(props.id, logo, value[1], props.position, value[0])
   }
 
   return (

@@ -4,6 +4,7 @@ const config = require('config')
 const {check, validationResult} = require('express-validator')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
+const Squad = require('../models/Squad')
 const router = Router()
 
 
@@ -34,8 +35,10 @@ router.post(
 
         const hashedPassword = await bcrypt.hash(password, 12)
         const user = new User({email, password: hashedPassword})
+        const squad = new Squad({owner: user.id, team: []})
 
         await user.save()
+        await squad.save()
 
         res.status(201).json({message: "User has been created"})
         

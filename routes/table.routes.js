@@ -4,13 +4,11 @@ const cheerio = require('cheerio')
 const router = Router()
 
 router.get("/", 
+    [],
     async(req, res)=>{
     try{
 
         const url = "https://football.ua/england.html"
-        console.log('rabotaet')
-
-
         const data = axios(url)
             .then(responce => {
                 const html = responce.data
