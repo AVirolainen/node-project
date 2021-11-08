@@ -1,0 +1,21 @@
+.carouselItem{
+    margin-top: 10px;
+    height: 380px;
+    text-align: center;
+    background-color: #e3e3e3
+}
+
+.playerWrapper{
+    display: flex;
+    align-items: center;
+}
+
+.carouselLogo{
+    height: 25px;
+    margin: 2px 10px;
+}
+
+.carouselPlayer{
+    width: 150px;
+    text-align: start;
+}

@@ -46,8 +46,8 @@ const InfoBlock = ()=>{
                 label: capitalizeFirstLetter(item.team),
                 children: item[position].map((innerItem)=>{
                     return {
-                        value: innerItem,
-                        label: innerItem,
+                        value: innerItem.split(" ").reverse().join(" "),
+                        label: innerItem.split(" ").reverse().join(" "),
                     }
                 })
             }

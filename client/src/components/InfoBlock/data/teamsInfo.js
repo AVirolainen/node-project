@@ -7,7 +7,7 @@ module.exports = [
     {
         "teamName": "liverpool",
         "teamId": "lId4TMwf",
-        "teamLogoId": "42"
+        "teamLogoId": "5"
     },
     {
         "teamName": "manchester-city",

@@ -3,7 +3,6 @@ const User = require('../models/User')
 const Squad = require('../models/Squad')
 const router = Router()
 
-// /api/auth/login
 router.post(
     '/saveTeam',
     async (req, res)=>{
@@ -23,6 +22,18 @@ router.post(
     
             res.status(201).json({message: "squad has been created"})
         }
+        
+    } catch(e){
+        res.status(500).json({message: "Something is wrong"})
+    }
+})
+
+router.get(
+    '/getTeams',
+    async (req, res)=>{
+    try{
+        const squads = await Squad.find()
+        res.json(squads)
         
     } catch(e){
         res.status(500).json({message: "Something is wrong"})
