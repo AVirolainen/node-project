@@ -10,20 +10,20 @@ router.post(
     try{
         const {id, playersList} = req.body
 
-        console.log(JSON.parse(id).userId, playersList)
-
         const squad = await Squad.findOne({ owner: JSON.parse(id).userId })
+        console.log(Object.values(playersList))
         if(squad){
-            console.log(squad)
+            await Squad.updateOne({ owner: JSON.parse(id).userId }, {$set: {team: Object.values(playersList)}})
+            res.status(201).json({message: "was found"})
         }
-        squad.team = [1, 1, 1, 1]
-
-        await squad.save()
-
-        res.status(201).json({message: "User has been created"})
+        else{
+            const newSquad = new Squad({owner: JSON.parse(id).userId, team: Object.values(playersList)})
+            console.log(newSquad)
+            await newSquad.save()
+    
+            res.status(201).json({message: "squad has been created"})
+        }
         
-
-
     } catch(e){
         res.status(500).json({message: "Something is wrong"})
     }

@@ -55,11 +55,11 @@ const InfoBlock = ()=>{
     }
 
     const saveTeam = ()=>{
-
+        console.log(fieldPlayers)
         const getPlayers = async () =>{
             try{  
-                const data = await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: [1, 1, 1]})
-                setPlayersList(playersList => [...playersList, data])
+                const data = await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: fieldPlayers})
+                console.log(data)
             } catch(e){}
         }
 

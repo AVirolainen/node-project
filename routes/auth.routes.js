@@ -35,10 +35,8 @@ router.post(
 
         const hashedPassword = await bcrypt.hash(password, 12)
         const user = new User({email, password: hashedPassword})
-        const squad = new Squad({owner: user.id, team: []})
 
         await user.save()
-        await squad.save()
 
         res.status(201).json({message: "User has been created"})
         
