@@ -32,6 +32,16 @@ const InfoBlock = ()=>{
         })
     }, [])
 
+    useEffect(()=>{
+        const getTeam = async () =>{
+            try{  
+                const data = await request('/api/team/getTeam', 'POST', {id: localStorage.getItem('userData')})
+                console.log(data);
+            } catch(e){}
+        }
+        getTeam()
+    }, [])
+
     const addToField = (id, logo, player, position, team)=>{
         let test = fieldPlayers
         test[id] = {logo, player, position, team}
@@ -55,16 +65,12 @@ const InfoBlock = ()=>{
     }
 
     const saveTeam = ()=>{
-        console.log(fieldPlayers)
         const getPlayers = async () =>{
             try{  
                 const data = await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: fieldPlayers})
-                console.log(data)
             } catch(e){}
         }
-
         getPlayers()
-
     }
 
     if(playersList.length != 20){
@@ -81,7 +87,6 @@ const InfoBlock = ()=>{
             <div className="footballField">
                 <div className="positionsWrapper">
                         <div className="fieldPostion" style={{backgroundImage: fieldPlayers == null  ? null : "url(" + fieldPlayers["0"] + ")"}}>
-                            {/* <Avatar key={Date.now()} src={fieldPlayers == null  ? null : fieldPlayers[0]} /> */}
                         </div>
                         <div className="fieldPostion">
                            

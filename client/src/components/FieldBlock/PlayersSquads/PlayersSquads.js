@@ -16,23 +16,28 @@ const PlayersSquads = ()=>{
 
         }, []
     )
-    console.log(squads)
     return(
         <Carousel effect="fade">
         {
             squads.map(item=>{
-                return <div className="carouselItem">
-                    {
-                        item.team.map(innerItem=>{
-                            return(
-                                <div className="playerWrapper">
-                                    <div><img className="carouselLogo" src={innerItem.logo}></img></div>
-                                    <div className="carouselPlayer">{innerItem.player}</div>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                return (
+                <div className="carouselItem">
+                    <div className="idValue">ID игрока: {item.owner}</div>
+                {
+                    item.team.map(innerItem=>{
+                        return(
+                            <div className="playerWrapper">
+                                <div><img className="carouselLogo" src={innerItem.logo}></img></div>
+                                <div className="carouselPlayer">{innerItem.player}</div>
+                                <div className="">{innerItem.position == "forward" ? "Нападающий" : 
+                                                   innerItem.position == "midfielder" ? "Полузащитник" :
+                                                   innerItem.position == "defender" ? "Защитник" :
+                                                   innerItem.position == "goalkeeper" ? "Вратарь" : " "}</div>
+                            </div>
+                        )
+                    })
+                }
+                </div>)
             })
         }
         </Carousel>
