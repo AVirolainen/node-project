@@ -6,7 +6,7 @@
 }
 
 .footballField{
-  min-width: 57%;
+  width: 570px;
   height: 100%;
   background-size: cover;
   background-image: url(./assets/football_field.png);
@@ -14,7 +14,7 @@
 
 .positionsWrapper{
   display: flex;
-  padding-top: 120px;
+  padding-top: 100px;
   justify-content: space-around;
 }
 
@@ -22,8 +22,6 @@
   width: 90px;
   height: 90px;
   border-radius: 45px;
-  background: white
-
 }
 
 .teamPlayers{

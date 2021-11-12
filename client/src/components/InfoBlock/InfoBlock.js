@@ -1,11 +1,13 @@
 import "./InfoBlock.css"
-import {useState, useEffect, useContext} from "react"
+import {useState, useEffect, useContext, useCallback} from "react"
 import {useHttp} from "../../hooks/http.hook"
 import teamsInfo from "./data/teamsInfo"
 import PlayerCascader from "./PlayerCascader/PlayerCascader"
 import Loader from "../Loader/Loader"
 import { Avatar } from 'antd';
 import { Button } from 'antd';
+import TeamLogo from "./TeamLogo/TeamLogo.js"
+import FootballField from "./FootballField/FootballField"
 
 function capitalizeFirstLetter(string) {
     if(string.indexOf("-")){
@@ -18,7 +20,9 @@ const InfoBlock = ()=>{
 
     const {loading, error, request, clearError} = useHttp()
     const [playersList, setPlayersList] = useState([])
-    const [fieldPlayers, setFieldPlayers] = useState({})
+    const [fieldPlayers, setFieldPlayers] = useState({0: {}, 1:{}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}})
+    const [, updateState] = useState();
+    const forceUpdate = useCallback(() => updateState({}), []);
     
     useEffect(()=>{
         const getPlayers = async (name, id, logo) =>{
@@ -36,7 +40,6 @@ const InfoBlock = ()=>{
         const getTeam = async () =>{
             try{  
                 const data = await request('/api/team/getTeam', 'POST', {id: localStorage.getItem('userData')})
-                console.log(data);
             } catch(e){}
         }
         getTeam()
@@ -46,6 +49,7 @@ const InfoBlock = ()=>{
         let test = fieldPlayers
         test[id] = {logo, player, position, team}
         setFieldPlayers(test)
+        forceUpdate()
     }
 
     const playersByPositions =(position)=>{
@@ -78,54 +82,13 @@ const InfoBlock = ()=>{
             <div className="infoBlock">
                 <Loader />
             </div>  
-            
         )
     }
 
     return(
         <div className="infoBlock">
-            <div className="footballField">
-                <div className="positionsWrapper">
-                        <div className="fieldPostion" style={{backgroundImage: fieldPlayers == null  ? null : "url(" + fieldPlayers["0"] + ")"}}>
-                        </div>
-                        <div className="fieldPostion">
-                           
-                        </div>
-                </div>
-                <div className="positionsWrapper">
-                        <div className="fieldPostion">
-                           
-                        </div>
-                        <div className="fieldPostion">
-                            
-                        </div>
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                </div>
-                <div className="positionsWrapper">
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                </div>
-                <div className="positionsWrapper">
-                        <div className="fieldPostion">
-                            <img src={null} />
-                        </div>
-                </div>
-            </div>
+
+            <FootballField fieldPlayers={fieldPlayers}/>
 
             <div className="teamPlayers">
                 <div className="teamPlayersHeader">

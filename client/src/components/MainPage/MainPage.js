@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react'
+import {useState, useEffect, useContext, useCallback} from "react"
 import "./MainPage.css"
 import {AuthContext} from "../../context/AuthContext.js"
 import HeaderBlock from "../HeaderBlock/HeaderBlock"
@@ -13,14 +13,16 @@ const MainPage = (props)=>{
     const [tableInfo, setTableInfo] = useState(null)
     const {request} = useHttp()
 
-    useEffect(()=>{
-        const getTable = async ()=>{
+    const getTable = useCallback(async () => {
+        try {
             const data = await request('/api/table')
             setTableInfo(data)
-        }
+        } catch (e) {}
+    }, [])
+
+    useEffect(()=>{
         getTable()
-        
-    }, [request])
+    }, [getTable])
 
     const logoutHandler = event => {
         event.preventDefault()
@@ -29,7 +31,7 @@ const MainPage = (props)=>{
 
     return(
         <div className="mainBlock">
-            <HeaderBlock/>
+            {/* <HeaderBlock/> */}
             <div className="mainWrapper">
                 <InfoBlock />
                 <TableBlock tableInfo={tableInfo}/>

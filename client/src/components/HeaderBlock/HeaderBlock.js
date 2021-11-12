@@ -3,24 +3,26 @@ import { Avatar } from 'antd';
 import {useState, useEffect, useContext, useCallback} from "react"
 import {useHttp} from "../../hooks/http.hook"
 import { UserOutlined } from '@ant-design/icons';
+import {AuthContext} from "../../context/AuthContext"
 
 const HeaderBlock = (props)=>{
     const {loading, error, request, clearError} = useHttp()
-    const [email, setEmail] = useState("")
+    const [email, setEmail] = useState()
     console.log(email);
 
     const getInfo = useCallback(async () => {
-            try {
-                const data = await request('/api/info/getInfo', 'POST', {id: localStorage.getItem('userData')})
-                setEmail(data.email)
-            } catch (e) {}
+        try {
+            const data = await request('/api/info/getInfo', 'POST', {id: localStorage.getItem('userData')})
+            setEmail(data.email)
+        } catch (e) {}
     }, [])
 
     useEffect(()=>{
         getInfo()
-    }, [])
-    
-    if(email.length == 0){
+    }, [getInfo])
+
+
+    if(!email){
         return(
             <div>qq</div>
         )
