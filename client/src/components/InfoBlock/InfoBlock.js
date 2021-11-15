@@ -4,8 +4,7 @@ import {useHttp} from "../../hooks/http.hook"
 import teamsInfo from "./data/teamsInfo"
 import PlayerCascader from "./PlayerCascader/PlayerCascader"
 import Loader from "../Loader/Loader"
-import { Avatar } from 'antd';
-import { Button } from 'antd';
+import { Avatar, Button, Modal } from 'antd'
 import TeamLogo from "./TeamLogo/TeamLogo.js"
 import FootballField from "./FootballField/FootballField"
 
@@ -23,6 +22,7 @@ const InfoBlock = ()=>{
     const [fieldPlayers, setFieldPlayers] = useState({0: {}, 1:{}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}})
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
+    const [isModalVisible, setIsModalVisible] = useState(false);
     
     useEffect(()=>{
         const getPlayers = async (name, id, logo) =>{
@@ -44,6 +44,18 @@ const InfoBlock = ()=>{
         }
         getTeam()
     }, [])
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const addToField = (id, logo, player, position, team)=>{
         let test = fieldPlayers
@@ -74,7 +86,16 @@ const InfoBlock = ()=>{
                 const data = await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: fieldPlayers})
             } catch(e){}
         }
-        getPlayers()
+        let test = Object.values(fieldPlayers).filter(item => {
+            return item.player
+        })
+        console.log(test.length);
+        if(test.length == 11){
+            getPlayers()
+        }
+        else{
+            showModal()
+        }
     }
 
     if(playersList.length != 20){
@@ -89,6 +110,12 @@ const InfoBlock = ()=>{
         <div className="infoBlock">
 
             <FootballField fieldPlayers={fieldPlayers}/>
+
+            <Modal title="Ошибка" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <p>Состав не укомплектован</p>
+                <p></p>
+                <p></p>
+            </Modal>
 
             <div className="teamPlayers">
                 <div className="teamPlayersHeader">
