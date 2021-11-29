@@ -5,8 +5,7 @@ import teamsInfo from "./data/teamsInfo"
 import players from "./data/players"
 import PlayerCascader from "./PlayerCascader/PlayerCascader"
 import Loader from "../Loader/Loader"
-import { Avatar } from 'antd';
-import { Button } from 'antd';
+import { Avatar, Button, Modal } from 'antd'
 import TeamLogo from "./TeamLogo/TeamLogo.js"
 import FootballField from "./FootballField/FootballField"
 
@@ -27,6 +26,8 @@ const InfoBlock = ()=>{
 
     console.log(playersList)
 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     useEffect(()=>{
         const getTeam = async () =>{
             try{  
@@ -37,6 +38,18 @@ const InfoBlock = ()=>{
         }
         getTeam()
     }, [])
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const addToField = (id, logo, player, position, team)=>{
         console.log(playersList)
@@ -81,7 +94,16 @@ const InfoBlock = ()=>{
                 const data = await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: fieldPlayers})
             } catch(e){}
         }
-        getPlayers()
+        let test = Object.values(fieldPlayers).filter(item => {
+            return item.player
+        })
+        console.log(test.length);
+        if(test.length == 11){
+            getPlayers()
+        }
+        else{
+            showModal()
+        }
     }
 
     if(playersList.length != 20){
@@ -96,6 +118,12 @@ const InfoBlock = ()=>{
         <div className="infoBlock">
 
             <FootballField fieldPlayers={fieldPlayers}/>
+
+            <Modal title="Ошибка" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                <p>Состав не укомплектован</p>
+                <p></p>
+                <p></p>
+            </Modal>
 
             <div className="teamPlayers">
                 <div className="teamPlayersHeader">
