@@ -30,10 +30,8 @@ router.post(
     async (req, res)=>{
     try{
         const {id} = req.body
-        console.log("here")
-
-        const squad = await Squad.findOne({ owner: JSON.parse(id).userId })
-        res.json(squad)
+        const squad = await Squad.findOne({ owner: id })
+        res.json(squad.team)
         
     } catch(e){
         res.status(500).json({message: "Something is wrong"})

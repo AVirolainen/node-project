@@ -8,6 +8,8 @@ import Loader from "../Loader/Loader"
 import { Avatar, Button, Modal } from 'antd'
 import TeamLogo from "./TeamLogo/TeamLogo.js"
 import FootballField from "./FootballField/FootballField"
+import {AuthContext} from "../../context/AuthContext"
+
 
 function capitalizeFirstLetter(string) {
     if(string.indexOf("-")){
@@ -17,27 +19,36 @@ function capitalizeFirstLetter(string) {
   }
 
 const InfoBlock = ()=>{
-
+    const auth = useContext(AuthContext)
     const {loading, error, request, clearError} = useHttp()
     const [playersList, setPlayersList] = useState(players)
     const [fieldPlayers, setFieldPlayers] = useState({0: {}, 1:{}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}})
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
 
-    console.log(playersList)
-
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    useEffect(()=>{
-        const getTeam = async () =>{
-            try{  
-                console.log("request has been sent")
-                const data = await request('/api/team/getTeam', 'POST', {id: localStorage.getItem('userData')})
-                console.log(data)
-            } catch(e){}
-        }
-        getTeam()
+    const getTeam = useCallback(async () => {
+        try {
+            console.log(auth.userId)
+            const data = await request('/api/team/getTeam', 'POST', {id: auth.userId})
+            const playersSquad = []
+            data.map((item, index)=>{
+                playersSquad[index] = {
+                    'player': item.player,
+                    'logo': item.logo,
+                    'position': item.position,
+                    'team': item.team
+                }
+            })
+            setFieldPlayers(playersSquad)
+            forceUpdate()
+        } catch (e) {}
     }, [])
+
+    useEffect(()=>{
+        getTeam()
+    }, [getTeam])
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -66,9 +77,6 @@ const InfoBlock = ()=>{
             }
             return item
         })
-
-        console.log(newPlayersList)
-
         forceUpdate()
     }
 
