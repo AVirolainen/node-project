@@ -1,38 +1,39 @@
 import 'antd/dist/antd.css'
-import {useState, useEffect, useContext} from "react"
+import { useState, useEffect, useContext } from "react"
 import { Form, Input, Button, Checkbox, notification, Space } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import './AuthPage.css'  
+import './AuthPage.css'
 import { AuthContext } from '../../context/AuthContext'
 
-import {useHttp} from "../../hooks/http.hook"
+import { useHttp } from "../../hooks/http.hook"
 
-const AuthPage = ()=>{
-    const auth = useContext(AuthContext) 
+const AuthPage = () => {
+    const auth = useContext(AuthContext)
 
 
-    const {loading, error, request, clearError} = useHttp()
+    const { loading, error, request, clearError } = useHttp()
 
     const [form, setForm] = useState({
-        email: "", password: ""
+        email: "",
+        password: ""
     })
 
-    const registerHandler = async () =>{
-        try{
-            const data = await request('/api/auth/register/', 'POST', {...form})
+    const registerHandler = async () => {
+        try {
+            const data = await request('/api/auth/register/', 'POST', { ...form })
             console.log('Data', data)
-        } catch(e){}
+        } catch (e) {}
     }
 
-    const loginHandler = async () =>{
-        try{
-            const data = await request('/api/auth/login/', 'POST', {...form})
+    const loginHandler = async () => {
+        try {
+            const data = await request('/api/auth/login/', 'POST', { ...form })
             auth.login(data.token, data.userId, data.email)
-        } catch(e){}
+        } catch (e) {}
     }
 
-    useEffect(()=>{
-        if(error){
+    useEffect(() => {
+        if (error) {
             notification["error"]({
                 message: 'Error',
                 description: error,
@@ -42,11 +43,11 @@ const AuthPage = ()=>{
     }, [error, clearError])
 
     const onChangeEmail = (e) => {
-        setForm(Object.assign(form, {email: e.target.value}))
+        setForm(Object.assign(form, { email: e.target.value }))
     }
 
     const onChangePassword = (e) => {
-        setForm(Object.assign(form, {password: e.target.value}))
+        setForm(Object.assign(form, { password: e.target.value }))
     }
 
     return (

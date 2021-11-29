@@ -2,6 +2,7 @@ import "./InfoBlock.css"
 import {useState, useEffect, useContext, useCallback} from "react"
 import {useHttp} from "../../hooks/http.hook"
 import teamsInfo from "./data/teamsInfo"
+import players from "./data/players"
 import PlayerCascader from "./PlayerCascader/PlayerCascader"
 import Loader from "../Loader/Loader"
 import { Avatar } from 'antd';
@@ -19,36 +20,42 @@ function capitalizeFirstLetter(string) {
 const InfoBlock = ()=>{
 
     const {loading, error, request, clearError} = useHttp()
-    const [playersList, setPlayersList] = useState([])
+    const [playersList, setPlayersList] = useState(players)
     const [fieldPlayers, setFieldPlayers] = useState({0: {}, 1:{}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}})
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
-    
-    useEffect(()=>{
-        const getPlayers = async (name, id, logo) =>{
-            try{  
-                const data = await request('/api/players/', 'POST', {name: name, id: id, logo: logo})
-                setPlayersList(playersList => [...playersList, data])
-            } catch(e){}
-        }
-        teamsInfo.forEach((item)=>{
-            getPlayers(item.teamName, item.teamId, item.teamLogoId)
-        })
-    }, [])
+
+    console.log(playersList)
 
     useEffect(()=>{
         const getTeam = async () =>{
             try{  
+                console.log("request has been sent")
                 const data = await request('/api/team/getTeam', 'POST', {id: localStorage.getItem('userData')})
+                console.log(data)
             } catch(e){}
         }
         getTeam()
     }, [])
 
     const addToField = (id, logo, player, position, team)=>{
+        console.log(playersList)
         let test = fieldPlayers
         test[id] = {logo, player, position, team}
         setFieldPlayers(test)
+
+        let newPlayersList = playersList.map(item => {
+            if(item.team == team){
+                let test2 = item
+                console.log(position, player)
+                test2[position].filter(innerItem => innerItem != player.split(" ").reverse().join(" "))
+                return test2
+            }
+            return item
+        })
+
+        console.log(newPlayersList)
+
         forceUpdate()
     }
 

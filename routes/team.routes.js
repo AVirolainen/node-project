@@ -30,6 +30,7 @@ router.post(
     async (req, res)=>{
     try{
         const {id} = req.body
+        console.log("here")
 
         const squad = await Squad.findOne({ owner: JSON.parse(id).userId })
         res.json(squad)

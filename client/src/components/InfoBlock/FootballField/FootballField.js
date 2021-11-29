@@ -3,8 +3,6 @@ import {useState, useEffect, useContext} from "react"
 import TeamLogo from "../TeamLogo/TeamLogo.js"
 
 const FootballField = (props)=>{
-
-	console.log(props.fieldPlayers);
 	return(
 		<div>
 			<div className="footballField">
