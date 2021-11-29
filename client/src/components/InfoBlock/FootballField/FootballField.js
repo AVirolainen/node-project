@@ -4,7 +4,7 @@ import TeamLogo from "../TeamLogo/TeamLogo.js"
 
 const FootballField = (props)=>{
 	return(
-		<div>
+
 			<div className="footballField">
                 <div className="positionsWrapper">
                     {
@@ -63,7 +63,6 @@ const FootballField = (props)=>{
                     }
                 </div>
             </div>		
-		</div>
 	)
 }
 

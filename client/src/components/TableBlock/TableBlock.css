@@ -6,6 +6,20 @@
   padding-top: 10px;
 }
 
+@media screen and (max-width: 1570px) {
+  .tableBlock {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .tableBlock {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+
 .tableImage {
   width: 20px;
 }

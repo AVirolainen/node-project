@@ -152,7 +152,7 @@ const InfoBlock = ()=>{
                     Вратарь
                 </div>
                     <PlayerCascader options={playersByPositions("goalkeeper")} id={10} addPlayer={addToField} position={"goalkeeper"}/>
-                <div className="saveButton">
+                <div className="playersPosition">
                     <Button type="primary" onClick={saveTeam}>Сохранить состав</Button>
                 </div>
             </div>
