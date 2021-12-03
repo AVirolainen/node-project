@@ -1,25 +1,19 @@
-.fieldBlock{
-  width: 100%;
+.fieldBlock {
+  width: 31%;
   height: 480px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   margin-top: 20px;
   padding: 10px 15px;
+  background-color: #e0e0e0;
 }
 
-.squadsWrapper{
+.squadsWrapper {
   width: 340px;
   font-size: 24px;
   font-weight: 700;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-  background-color: #e3e3e3
-
 }
 
-.squadsWrapper:hover{
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-.playerItem{
+.playerItem {
   height: 50px;
 }

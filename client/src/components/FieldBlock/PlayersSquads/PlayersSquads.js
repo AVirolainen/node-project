@@ -46,22 +46,3 @@ const PlayersSquads = ()=>{
 
 export default PlayersSquads
 
-
-// <Carousel effect="fade">
-// <div className="carouselItem">
-//     {
-//         squads.map(item=>{
-//             return <div className="playerItem">{item.team[0].player}</div>
-//         })
-//     }
-// </div>
-// <div className="carouselItem">
-//     <h3>2</h3>
-// </div>
-// <div className="carouselItem">
-//     <h3>3</h3>
-// </div>
-// <div className="carouselItem">
-//     <h3>4</h3>
-// </div>
-// </Carousel>

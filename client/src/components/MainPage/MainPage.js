@@ -5,6 +5,7 @@ import HeaderBlock from "../HeaderBlock/HeaderBlock"
 import InfoBlock from "../InfoBlock/InfoBlock"
 import TableBlock from '../TableBlock/TableBlock'
 import FieldBlock from '../FieldBlock/FieldBlock'
+import TeamWeek from "../TeamWeek/TeemWeek"
 
 import {useHttp} from "../../hooks/http.hook"
 
@@ -36,7 +37,10 @@ const MainPage = (props)=>{
                 <InfoBlock />
                 <TableBlock tableInfo={tableInfo}/>
             </div>
-            <FieldBlock />
+            <div className="fieldWrapper">
+                <FieldBlock />
+                <TeamWeek />
+            </div>
             <li><a href="/" onClick={logoutHandler}>Выйти</a></li>
         </div>
     )
