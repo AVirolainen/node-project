@@ -1,6 +1,6 @@
 .fieldBlock {
   width: 31%;
-  height: 480px;
+  height: 740px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   margin-top: 20px;
@@ -9,7 +9,7 @@
 }
 
 .squadsWrapper {
-  width: 340px;
+  width: 500px;
   font-size: 24px;
   font-weight: 700;
 }

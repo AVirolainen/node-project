@@ -1,13 +1,15 @@
 .carouselItem {
   margin-top: 5px;
-  height: 435px;
+  height: 675px;
   text-align: center;
 }
 
 .playerWrapper {
-  margin-top: 4px;
+  margin-top: 18px;
+  font-size: 18px;
   display: flex;
   align-items: center;
+  
 }
 
 .playerWrapper:hover {
@@ -26,5 +28,9 @@
 }
 
 .idValue {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
+}
+
+.carouselPosition{
+  margin-left: 45px;
 }

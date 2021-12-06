@@ -29,7 +29,7 @@ const PlayersSquads = ()=>{
                             <div className="playerWrapper">
                                 <div><img className="carouselLogo" src={innerItem.logo}></img></div>
                                 <div className="carouselPlayer">{innerItem.player}</div>
-                                <div className="">{innerItem.position == "forward" ? "Нападающий" : 
+                                <div className="carouselPosition">{innerItem.position == "forward" ? "Нападающий" : 
                                                    innerItem.position == "midfielder" ? "Полузащитник" :
                                                    innerItem.position == "defender" ? "Защитник" :
                                                    innerItem.position == "goalkeeper" ? "Вратарь" : " "}</div>

@@ -1,8 +1,14 @@
-.teemWeek {
+.teamWeek {
   width: 65%;
-  height: 480px;
+  height: 740px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   margin-top: 20px;
   padding: 10px 15px;
 }
+
+.weekHeader{
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
