@@ -39,17 +39,20 @@
   }
 }
 
-
-
 .footballField{
-  min-width: 570px;
+  margin-top: 50px;
+  min-width: 650px;
   background-size: cover;
-  background-image: url(./assets/football_field.png);
+  height: 780px;
+  background-image: url(./assets/pitch.svg);
 }
 
 .positionsWrapper{
+  margin-left: 10px;
+  margin-bottom: 45px;
+  width: 630px;
   display: flex;
-  padding-top: 100px;
+  padding-top: 50px;
   justify-content: space-around;
 }
 

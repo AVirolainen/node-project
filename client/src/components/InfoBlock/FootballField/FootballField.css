@@ -1,13 +1,13 @@
 .playerName{
 	width: 100px;
-	height: 65px;
+	height: 35px;
 	text-align: center;
-	font-weight: 700;
-	font-size: 14px;
+	font-weight: 900;
+	font-size: 20px;
 	margin-top: 10px;
-	background-color: white;
+	color:white;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	
 }
