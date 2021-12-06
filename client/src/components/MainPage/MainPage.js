@@ -37,7 +37,7 @@ const MainPage = (props)=>{
                 <InfoBlock />
                 <TableBlock tableInfo={tableInfo}/>
             </div>
-            <div className="fieldWrapper">
+            <div className="mainWrapper">
                 <FieldBlock />
                 <TeamWeek />
             </div>

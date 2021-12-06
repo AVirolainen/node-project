@@ -11,15 +11,10 @@
   justify-content: space-between;
 }
 
+
 @media screen and (max-width: 1570px) {
-  .mainWrapper {
+  .mainWrapper{
     display: inline-block;
   }
-}
 
-.fieldWrapper {
-  width: 100%;
-  margin-top: 15px;
-  display: flex;
-  justify-content: space-between;
 }

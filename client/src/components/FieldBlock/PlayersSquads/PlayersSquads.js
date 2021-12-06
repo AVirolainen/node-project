@@ -27,8 +27,12 @@ const PlayersSquads = ()=>{
                     item.team.map(innerItem=>{
                         return(
                             <div className="playerWrapper">
-                                <div><img className="carouselLogo" src={innerItem.logo}></img></div>
-                                <div className="carouselPlayer">{innerItem.player}</div>
+                                <div style={{
+                                    display: "flex"
+                                }}>
+                                    <div><img className="carouselLogo" src={innerItem.logo}></img></div>
+                                    <div className="carouselPlayer">{innerItem.player}</div>
+                                </div>
                                 <div className="carouselPosition">{innerItem.position == "forward" ? "Нападающий" : 
                                                    innerItem.position == "midfielder" ? "Полузащитник" :
                                                    innerItem.position == "defender" ? "Защитник" :

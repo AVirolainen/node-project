@@ -1,15 +1,26 @@
 .carouselItem {
   margin-top: 5px;
-  height: 675px;
+  height: 725px;
   text-align: center;
 }
 
 .playerWrapper {
-  margin-top: 18px;
   font-size: 18px;
   display: flex;
   align-items: center;
+
+  height: 60px
   
+  
+}
+
+@media screen and (max-width: 1570px) {
+  .playerWrapper{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 25px;
+    justify-content: space-around;
+  }
 }
 
 .playerWrapper:hover {
@@ -28,9 +39,11 @@
 }
 
 .idValue {
-  margin-bottom: 30px;
+  margin: 0 auto;
+  
 }
 
 .carouselPosition{
+  width: 100px;
   margin-left: 45px;
 }

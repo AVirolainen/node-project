@@ -5,10 +5,50 @@
   text-align: center;
   margin-top: 20px;
   padding: 10px 15px;
+  color: white
 }
 
 .weekHeader{
   font-size: 24px;
+  font-weight: 900;
   margin-bottom: 30px;
+  color: black;
 }
 
+.weekPitch{
+  width: 80%;
+  margin: 0 auto;
+  height: 650px;
+  background-image: url(./assets/pitch.svg);
+}
+
+@media screen and (max-width: 1570px) {
+  .teamWeek{
+    width: 100%;
+  }
+  .weekPitch{
+    width: 700px;
+    margin: 0 auto;
+  }
+}
+
+.weekWrapper{
+  display: flex;
+  width: 300px;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.weekLogo{
+  width: 80px;
+}
+
+.weekRate{
+  background-color: #EB5B14;
+  width: 50px;
+  font-weight: 900;
+  margin: 0 auto;
+  border-radius: 5px;
+
+}

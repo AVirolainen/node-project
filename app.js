@@ -11,6 +11,7 @@ app.use('/api/info', require("./routes/info.routes"))
 app.use('/api/players', require("./routes/players.routes"))
 app.use('/api/table', require("./routes/table.routes"))
 app.use('/api/team', require("./routes/team.routes"))
+app.use('/api/teamWeek', require("./routes/teamWeek.routes"))
 
 const PORT = config.get('port') || 5000
 
