@@ -1,12 +1,11 @@
 import "./HeaderBlock.css"
 import { Avatar } from 'antd';
-import {useState, useEffect, useContext, useCallback} from "react"
+import {useState, useEffect, useCallback} from "react"
 import {useHttp} from "../../hooks/http.hook"
 import { UserOutlined } from '@ant-design/icons';
-import {AuthContext} from "../../context/AuthContext"
 
 const HeaderBlock = (props)=>{
-    const {loading, error, request, clearError} = useHttp()
+    const {request} = useHttp()
     const [email, setEmail] = useState()
     console.log(email);
 
@@ -15,7 +14,7 @@ const HeaderBlock = (props)=>{
             const data = await request('/api/info/getInfo', 'POST', {id: localStorage.getItem('userData')})
             setEmail(data.email)
         } catch (e) {}
-    }, [])
+    }, [request])
 
     useEffect(()=>{
         getInfo()

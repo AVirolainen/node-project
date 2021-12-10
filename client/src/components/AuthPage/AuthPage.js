@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css'
 import { useState, useEffect, useContext } from "react"
-import { Form, Input, Button, Checkbox, notification, Space } from 'antd'
+import { Form, Input, Button, Checkbox, notification } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import './AuthPage.css'
 import { AuthContext } from '../../context/AuthContext'
@@ -11,7 +11,7 @@ const AuthPage = () => {
     const auth = useContext(AuthContext)
 
 
-    const { loading, error, request, clearError } = useHttp()
+    const { error, request, clearError } = useHttp()
 
     const [form, setForm] = useState({
         email: "",

@@ -5,7 +5,7 @@ const TeamLogo = (props) => {
 	if(props.teamLogo){
 		return(
 			<div>
-				<img src={props.teamLogo} className="teamImage"/>
+				<img src={props.teamLogo} alt="team logo" className="teamImage"/>
 			</div>
 		)
 	}

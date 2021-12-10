@@ -1,7 +1,6 @@
 import {useState, useEffect, useContext, useCallback} from "react"
 import "./MainPage.css"
 import {AuthContext} from "../../context/AuthContext.js"
-import HeaderBlock from "../HeaderBlock/HeaderBlock"
 import InfoBlock from "../InfoBlock/InfoBlock"
 import TableBlock from '../TableBlock/TableBlock'
 import FieldBlock from '../FieldBlock/FieldBlock'
@@ -19,7 +18,7 @@ const MainPage = (props)=>{
             const data = await request('/api/table')
             setTableInfo(data)
         } catch (e) {}
-    }, [])
+    }, [request])
 
     useEffect(()=>{
         getTable()
@@ -32,7 +31,6 @@ const MainPage = (props)=>{
 
     return(
         <div className="mainBlock">
-            {/* <HeaderBlock/> */}
             <div className="mainWrapper">
                 <InfoBlock />
                 <TableBlock tableInfo={tableInfo}/>

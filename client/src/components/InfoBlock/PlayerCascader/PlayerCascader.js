@@ -5,8 +5,8 @@ const PlayerCascader = (props)=>{
 
   function onChange(value) {
     let logo = ""
-    props.options.map(item=>{
-      if(item.value == value[0]){
+    props.options.forEach(item=>{
+      if(item.value === value[0]){
         logo = item.logo
       }
     })

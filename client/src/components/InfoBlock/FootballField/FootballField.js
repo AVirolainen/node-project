@@ -1,5 +1,4 @@
 import "./FootballField.css"
-import {useState, useEffect, useContext} from "react"
 import TeamLogo from "../TeamLogo/TeamLogo.js"
 
 const FootballField = (props)=>{

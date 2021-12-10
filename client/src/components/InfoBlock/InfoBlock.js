@@ -1,12 +1,10 @@
 import "./InfoBlock.css"
 import {useState, useEffect, useContext, useCallback} from "react"
 import {useHttp} from "../../hooks/http.hook"
-import teamsInfo from "./data/teamsInfo"
 import players from "./data/players"
 import PlayerCascader from "./PlayerCascader/PlayerCascader"
 import Loader from "../Loader/Loader"
-import { Avatar, Button, Modal } from 'antd'
-import TeamLogo from "./TeamLogo/TeamLogo.js"
+import { Button, Modal } from 'antd'
 import FootballField from "./FootballField/FootballField"
 import {AuthContext} from "../../context/AuthContext"
 
@@ -20,8 +18,8 @@ function capitalizeFirstLetter(string) {
 
 const InfoBlock = ()=>{
     const auth = useContext(AuthContext)
-    const {loading, error, request, clearError} = useHttp()
-    const [playersList, setPlayersList] = useState(players)
+    const { request} = useHttp()
+    const [playersList] = useState(players)
     const [fieldPlayers, setFieldPlayers] = useState({0: {}, 1:{}, 2:{}, 3:{}, 4:{}, 5:{}, 6:{}, 7:{}, 8:{}, 9:{}, 10:{}})
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
@@ -32,19 +30,19 @@ const InfoBlock = ()=>{
         try {
             console.log(auth.userId)
             const data = await request('/api/team/getTeam', 'POST', {id: auth.userId})
-            const playersSquad = []
             data.map((item, index)=>{
-                playersSquad[index] = {
+                return {
                     'player': item.player,
                     'logo': item.logo,
                     'position': item.position,
                     'team': item.team
                 }
+                
             })
-            setFieldPlayers(playersSquad)
+            setFieldPlayers(data)
             forceUpdate()
         } catch (e) {}
-    }, [])
+    }, [auth.userId, forceUpdate, request])
 
     useEffect(()=>{
         getTeam()
@@ -63,16 +61,15 @@ const InfoBlock = ()=>{
     };
 
     const addToField = (id, logo, player, position, team)=>{
-        console.log(playersList)
         let test = fieldPlayers
         test[id] = {logo, player, position, team}
         setFieldPlayers(test)
 
-        let newPlayersList = playersList.map(item => {
-            if(item.team == team){
+        playersList.map(item => {
+            if(item.team === team){
                 let test2 = item
                 console.log(position, player)
-                test2[position].filter(innerItem => innerItem != player.split(" ").reverse().join(" "))
+                test2[position].filter(innerItem => innerItem !== player.split(" ").reverse().join(" "))
                 return test2
             }
             return item
@@ -97,16 +94,18 @@ const InfoBlock = ()=>{
     }
 
     const saveTeam = ()=>{
+
         const getPlayers = async () =>{
             try{  
-                const data = await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: fieldPlayers})
+                await request('/api/team/saveTeam', 'POST', {id: localStorage.getItem('userData'), playersList: fieldPlayers})
             } catch(e){}
         }
+
         let test = Object.values(fieldPlayers).filter(item => {
             return item.player
         })
         console.log(test.length);
-        if(test.length == 11){
+        if(test.length === 11){
             getPlayers()
         }
         else{
@@ -114,7 +113,7 @@ const InfoBlock = ()=>{
         }
     }
 
-    if(playersList.length != 20){
+    if(playersList.length !== 20){
         return(
             <div className="infoBlock">
                 <Loader />

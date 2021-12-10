@@ -15,7 +15,7 @@ const TableBlock = (props)=>{
       }
     }, [props.tableInfo])
 
-    if(table.length == 0){
+    if(table.length === 0){
       return(
         <div className="tableBlock">
           <Loader />
@@ -37,7 +37,7 @@ const TableBlock = (props)=>{
                 return (
                   <div className="tableRow row">
                     <div className="tablePosition">{item.position}</div>
-                    <div className="tableImage"><img src={item.image} /></div>
+                    <div className="tableImage"><img src={item.image} alt="club" /></div>
                     <div className="tableTeamName">{item.team}</div>
                     <div className="tableTeamGames">{item.games}</div>
                     <div className="tableTeamPoints">{item.points}</div>

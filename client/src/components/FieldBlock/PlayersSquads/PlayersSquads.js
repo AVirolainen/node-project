@@ -1,5 +1,5 @@
 import "./PlayersSquads.css"
-import React, {useContext, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Carousel } from 'antd';
 import {useHttp} from "../../../hooks/http.hook"
 
@@ -14,7 +14,7 @@ const PlayersSquads = ()=>{
         }
         getSquads()
 
-        }, []
+        }
     )
     return(
         <Carousel effect="fade">
@@ -30,13 +30,13 @@ const PlayersSquads = ()=>{
                                 <div style={{
                                     display: "flex"
                                 }}>
-                                    <div><img className="carouselLogo" src={innerItem.logo}></img></div>
+                                    <div><img className="carouselLogo" alt="carouselLogo" src={innerItem.logo}></img></div>
                                     <div className="carouselPlayer">{innerItem.player}</div>
                                 </div>
-                                <div className="carouselPosition">{innerItem.position == "forward" ? "Нападающий" : 
-                                                   innerItem.position == "midfielder" ? "Полузащитник" :
-                                                   innerItem.position == "defender" ? "Защитник" :
-                                                   innerItem.position == "goalkeeper" ? "Вратарь" : " "}</div>
+                                <div className="carouselPosition">{innerItem.position === "forward" ? "Нападающий" : 
+                                                   innerItem.position === "midfielder" ? "Полузащитник" :
+                                                   innerItem.position === "defender" ? "Защитник" :
+                                                   innerItem.position === "goalkeeper" ? "Вратарь" : " "}</div>
                             </div>
                         )
                     })

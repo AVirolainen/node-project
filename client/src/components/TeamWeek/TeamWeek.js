@@ -1,6 +1,5 @@
 import "./TeamWeek.css"
-import pitch from "./assets/pitch.svg"
-import {useState, useEffect, useContext, useCallback} from "react"
+import {useState, useEffect, useCallback} from "react"
 import {useHttp} from "../../hooks/http.hook"
 
 const TeamWeek = ()=>{
@@ -13,7 +12,7 @@ const TeamWeek = ()=>{
             console.log(data)
             setTeamOfTheWeek(data)
         } catch (e) {}
-    }, [])
+    }, [request])
 
     useEffect(()=>{
         getTeamWeek()
