@@ -17,8 +17,8 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
-      "npm run lint"
+    "client/**/*.js": [
+      "eslint *.js"
     ]
   },
   "author": "",
