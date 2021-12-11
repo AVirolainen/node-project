@@ -18,7 +18,7 @@ export const useAuth = () => {
       userId: id, token: jwtToken, email
     }))
   }, [])
-//test
+//test2
 
   const logout = useCallback(() => {
     setToken(null)
