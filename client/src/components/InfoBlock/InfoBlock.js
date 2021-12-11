@@ -28,7 +28,6 @@ const InfoBlock = ()=>{
 
     const getTeam = useCallback(async () => {
         try {
-            console.log(auth.userId)
             const data = await request('/api/team/getTeam', 'POST', {id: auth.userId})
             data.map((item, index)=>{
                 return {

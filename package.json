@@ -8,7 +8,8 @@
     "server": "nodemon app.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "lint": "eslint client/src/**/*.js"
+    "lint": "eslint client/src/**/*.js",
+    "precommit": "lint-staged"
   },
   "author": "",
   "license": "ISC",
@@ -18,8 +19,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.27.1",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
     "nodemon": "^2.0.13",
     "prettier": "^2.4.1"
   },
@@ -33,5 +34,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.9",
     "react-router-dom": "^5.3.0"
+  },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }

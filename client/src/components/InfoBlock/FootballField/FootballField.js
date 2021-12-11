@@ -7,9 +7,9 @@ const FootballField = (props)=>{
 			<div className="footballField">
                 <div className="positionsWrapper">
                     {
-                        Object.values(props.fieldPlayers).slice(0, 2).map(item => {
+                        Object.values(props.fieldPlayers).slice(0, 2).map((item, index) => {
                             return (
-                                <div className="fieldPostion">
+                                <div className="fieldPostion" key={index}>
                                     <TeamLogo teamLogo={item ? item.logo : null} />
                                     <div className="playerName">
                                     	{item ? item.player : null}
@@ -21,9 +21,9 @@ const FootballField = (props)=>{
                 </div>
                 <div className="positionsWrapper">
                     {
-                        Object.values(props.fieldPlayers).slice(2, 6).map(item => {
+                        Object.values(props.fieldPlayers).slice(2, 6).map((item, index) => {
                             return (
-                                <div className="fieldPostion">
+                                <div className="fieldPostion" key={index}>
                                     <TeamLogo teamLogo={item ? item.logo : null} />
                                      <div className="playerName">
                                     	{item ? item.player : null}
@@ -35,9 +35,9 @@ const FootballField = (props)=>{
                 </div>
                 <div className="positionsWrapper">
                     {
-                        Object.values(props.fieldPlayers).slice(6, 10).map(item => {
+                        Object.values(props.fieldPlayers).slice(6, 10).map((item, index) => {
                             return (
-                                <div className="fieldPostion">
+                                <div className="fieldPostion" key={index}>
                                     <TeamLogo teamLogo={item ? item.logo : null} />
                                     <div className="playerName">
                                     	{item ? item.player : null}
@@ -49,9 +49,9 @@ const FootballField = (props)=>{
                 </div>
                 <div className="positionsWrapper">
                     {
-                        Object.values(props.fieldPlayers).slice(10, 11).map(item => {
+                        Object.values(props.fieldPlayers).slice(10, 11).map((item, index) => {
                             return (
-                                <div className="fieldPostion">
+                                <div className="fieldPostion" key={index}>
                                     <TeamLogo teamLogo={item ? item.logo : null} />
                                     <div className="playerName">
                                     	{item ? item.player : null}

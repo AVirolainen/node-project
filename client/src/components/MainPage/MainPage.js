@@ -39,7 +39,7 @@ const MainPage = (props) => {
                 <FieldBlock />
                 <TeamWeek />
             </div>
-            <li>
+            <li style={{marginTop: "15px"}}>
                 <a href="/" onClick={logoutHandler}>
                     Выйти
                 </a>

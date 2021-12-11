@@ -14,19 +14,20 @@ const PlayersSquads = ()=>{
         }
         getSquads()
 
-        }
+        }, [request]
     )
+
     return(
         <Carousel effect="fade">
         {
-            squads.map(item=>{
+            squads.map((item, index)=>{
                 return (
-                <div className="carouselItem">
+                <div className="carouselItem" key={index}>
                     <div className="idValue">ID игрока: {item.owner}</div>
                 {
-                    item.team.map(innerItem=>{
+                    item.team.map((innerItem, innerIndex)=>{
                         return(
-                            <div className="playerWrapper">
+                            <div className="playerWrapper" key={innerIndex}>
                                 <div style={{
                                     display: "flex"
                                 }}>
