@@ -9,7 +9,7 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "pre-commit": "lint-staged",
-    "lint": "eslint client/**/*.js"
+    "lint": "eslint --max-warnings=0 client/**/*.js"
   },
   "husky": {
     "hooks": {
@@ -17,7 +17,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,scss,html,md}": [
+    "*.{js,css,scss,html}": [
       "npm run lint"
     ]
   },
