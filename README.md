@@ -9,6 +9,7 @@
 - Express
 - MongoDB
 # ER діаграма
+![plot](../diagrams/)
 
 # Зв'язки в MongoDB
 
